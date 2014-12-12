@@ -7,7 +7,7 @@ class FullRunwayError < Exception
 	end
 end
 
-class TooStormyForTakeOff < Exception
+class TooStormy < Exception
 	def message
 		'Too stormy to take off'
 	end
@@ -20,10 +20,11 @@ class Airport
 	def initialize
 		@runway = []
 		capacity
-		@weather = weather
+		@weather = "Sunny"
 	end
 
 	def land(plane)
+		stormy
 		raise FullRunwayError if full?
 		@runway << plane
 	end
@@ -48,11 +49,11 @@ class Airport
 	def weather
 		weather = [ "Sunny", "Stormy" ]
 		selection = rand(2)
-		weather[selection]
+		@weather = weather[selection]
 	end
 
 	def stormy
-		raise TooStormyForTakeOff if weather == "Stormy"
+		raise TooStormy if weather == "Stormy"
 	end
 
 

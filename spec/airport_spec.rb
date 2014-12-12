@@ -15,6 +15,7 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
+      allow(airport).to receive(:weather) {"Sunny"}
       airport.land(plane)
       expect(airport.plane_count).to eq(1)
     end
@@ -31,12 +32,14 @@ describe Airport do
   context 'traffic control' do
 
     it 'the airport should know when its full' do
+      allow(airport).to receive(:weather) {"Sunny"}
       fill_airport plane
       expect(airport).to be_full
     end
 
 
     it 'a plane cannot land if the airport is full' do
+      allow(airport).to receive(:weather) {"Sunny"}
       fill_airport plane
       expect{airport.land(plane2)}.to raise_error FullRunwayError
     end
@@ -54,14 +57,13 @@ describe Airport do
     it 'a plane cannot take off when there is a storm brewing' do
       airport.land(plane)
       allow(airport).to receive(:weather) {"Stormy"}
-      expect{airport.take_off(plane)}.to raise_error TooStormyForTakeOff
-
-
+      expect{airport.take_off(plane)}.to raise_error TooStormy
     end
 
-    # it 'a plane cannot land in the middle of a storm' do
-
-    # end
+    it 'a plane cannot land in the middle of a storm' do
+      allow(airport).to receive(:weather) {"Stormy"}
+      expect{airport.land(plane)}.to raise_error TooStormy
+    end
 
   end
 
