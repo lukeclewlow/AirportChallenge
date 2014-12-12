@@ -17,4 +17,12 @@ class Airport
 		@runway.count
 	end
 
+	def capacity
+		@capacity = 1
+	end
+
+	def full?
+		plane_count == capacity
+	end
+
 end
