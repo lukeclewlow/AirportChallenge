@@ -1,6 +1,3 @@
-require 'byebug'
-
-
 class FullRunwayError < Exception
 	def message
 		'Airport is full'
@@ -26,8 +23,7 @@ class Airport
 	def land(plane)
 		stormy
 		raise FullRunwayError if full?
-		@runway << plane
-	end
+		@runway << plane	end
 
 	def take_off(plane)
 		stormy
@@ -47,8 +43,8 @@ class Airport
 	end
 
 	def weather
-		weather = [ "Sunny", "Stormy" ]
-		selection = rand(2)
+		weather = [ "Sunny", "Sunny", "Stormy" ]
+		selection = rand(3)
 		@weather = weather[selection]
 	end
 

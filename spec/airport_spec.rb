@@ -1,4 +1,3 @@
-require 'byebug'
 require 'airport'
 
 describe Airport do
@@ -55,6 +54,7 @@ describe Airport do
     end
 
     it 'a plane cannot take off when there is a storm brewing' do
+      allow(airport).to receive(:weather) {"Sunny"}
       airport.land(plane)
       allow(airport).to receive(:weather) {"Stormy"}
       expect{airport.take_off(plane)}.to raise_error TooStormy
