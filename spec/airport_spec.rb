@@ -1,9 +1,11 @@
+require 'byebug'
 require 'airport'
 
 describe Airport do
 
   let(:airport) { Airport.new }
   let(:plane) {double :plane}
+  let(:plane2) {double :plane}
 
   def fill_airport(plane)
     1.times {airport.land(plane)}
@@ -33,9 +35,10 @@ describe Airport do
     end
 
 
-    # it 'a plane cannot land if the airport is full' do
-
-    # end
+    it 'a plane cannot land if the airport is full' do
+      fill_airport plane
+      expect{airport.land(plane2)}.to raise_error FullRunwayError
+    end
   
   end
 end

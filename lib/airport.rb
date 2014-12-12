@@ -1,16 +1,28 @@
+require 'byebug'
+
+class FullRunwayError < Exception
+	def message
+		'Airport is full'
+	end
+end
+
+
 class Airport
 
 
-	def runway
+	def initialize
 		@runway = []
+		capacity
 	end
 
 	def land(plane)
-		runway << plane
+		raise FullRunwayError if full?
+		
+		@runway << plane
 	end
 
 	def take_off(plane)
-		runway.delete(plane)
+		@runway.delete(plane)
 	end
 
 	def plane_count
@@ -24,5 +36,6 @@ class Airport
 	def full?
 		plane_count == capacity
 	end
+
 
 end
