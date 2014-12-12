@@ -9,6 +9,8 @@ class Plane
 	end
 
 	def fly!
+		if land!
+		end
 		@flying = true
 	end
 

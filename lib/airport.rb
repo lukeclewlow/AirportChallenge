@@ -23,11 +23,15 @@ class Airport
 	def land(plane)
 		stormy
 		raise FullRunwayError if full?
-		@runway << plane	end
+		plane.land!
+		@runway << plane
+
+	end
 
 	def take_off(plane)
 		stormy
 		@runway.delete(plane)
+		plane.fly!
 	end
 
 	def plane_count
