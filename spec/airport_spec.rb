@@ -12,7 +12,11 @@ describe Airport do
       expect(airport.plane_count).to eq(1)
     end
 
-  #   it 'a plane can take off' do
+    it 'a plane can take off' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.plane_count).to eq(0)
+    end
 
   end
   end

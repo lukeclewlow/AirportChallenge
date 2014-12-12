@@ -9,6 +9,10 @@ class Airport
 		runway << plane
 	end
 
+	def take_off(plane)
+		runway.delete(plane)
+	end
+
 	def plane_count
 		@runway.count
 	end
