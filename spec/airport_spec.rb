@@ -41,4 +41,26 @@ describe Airport do
     end
   
   end
+
+
+  context 'weather conditions' do
+
+    it 'should know when there is a storm' do
+      allow(airport).to receive(:weather) {"Stormy"}
+      expect(airport.weather).to eq("Stormy")
+    end
+
+    # it 'a plane cannot take off when there is a storm brewing' do
+    #   airport.land(plane)
+    #   expect{airport.take_off(plane)}.to
+
+
+    # end
+
+    # it 'a plane cannot land in the middle of a storm' do
+
+    # end
+
+  end
+
 end

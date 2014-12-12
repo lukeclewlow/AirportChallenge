@@ -13,11 +13,11 @@ class Airport
 	def initialize
 		@runway = []
 		capacity
+		@weather = weather
 	end
 
 	def land(plane)
 		raise FullRunwayError if full?
-		
 		@runway << plane
 	end
 
@@ -36,6 +36,14 @@ class Airport
 	def full?
 		plane_count == capacity
 	end
+
+	def weather
+		weather = [ "Sunny", "Stormy" ]
+		selection = rand(2)
+		weather[selection]
+	end
+
+
 
 
 end
