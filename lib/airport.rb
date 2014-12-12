@@ -1,8 +1,15 @@
 require 'byebug'
 
+
 class FullRunwayError < Exception
 	def message
 		'Airport is full'
+	end
+end
+
+class TooStormyForTakeOff < Exception
+	def message
+		'Too stormy to take off'
 	end
 end
 
@@ -22,6 +29,7 @@ class Airport
 	end
 
 	def take_off(plane)
+		stormy
 		@runway.delete(plane)
 	end
 
@@ -43,6 +51,9 @@ class Airport
 		weather[selection]
 	end
 
+	def stormy
+		raise TooStormyForTakeOff if weather == "Stormy"
+	end
 
 
 

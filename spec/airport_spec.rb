@@ -20,6 +20,7 @@ describe Airport do
     end
 
     it 'a plane can take off' do
+      allow(airport).to receive(:weather) {"Sunny"}
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.plane_count).to eq(0)
@@ -50,12 +51,13 @@ describe Airport do
       expect(airport.weather).to eq("Stormy")
     end
 
-    # it 'a plane cannot take off when there is a storm brewing' do
-    #   airport.land(plane)
-    #   expect{airport.take_off(plane)}.to
+    it 'a plane cannot take off when there is a storm brewing' do
+      airport.land(plane)
+      allow(airport).to receive(:weather) {"Stormy"}
+      expect{airport.take_off(plane)}.to raise_error TooStormyForTakeOff
 
 
-    # end
+    end
 
     # it 'a plane cannot land in the middle of a storm' do
 
