@@ -7,7 +7,7 @@ describe Airport do
   let(:plane2) {double :plane}
 
   def fill_airport(plane)
-    1.times {airport.land(plane)}
+    10.times {airport.land(plane)}
   end
 
 

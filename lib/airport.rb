@@ -14,10 +14,13 @@ end
 class Airport
 
 
+DEFAULT_CAPACITY = 10
+
+
 	def initialize
 		@runway = []
 		capacity
-		@weather = "Sunny"
+		weather
 	end
 
 	def land(plane)
@@ -39,7 +42,7 @@ class Airport
 	end
 
 	def capacity
-		@capacity = 1
+		@capacity ||= DEFAULT_CAPACITY
 	end
 
 	def full?
@@ -47,15 +50,13 @@ class Airport
 	end
 
 	def weather
-		weather = [ "Sunny", "Sunny", "Stormy" ]
-		selection = rand(3)
+		weather = [ "Sunny", "Sunny", "Sunny", "Stormy", "Stormy" ]
+		selection = rand(5)
 		@weather = weather[selection]
 	end
 
 	def stormy
 		raise TooStormy if weather == "Stormy"
 	end
-
-
 
 end

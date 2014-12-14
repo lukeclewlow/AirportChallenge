@@ -1,11 +1,28 @@
-# require 'plane'
-# require 'airport'
+require 'byebug'
+require 'plane'
+require 'airport'
 
-# describe "The grand finale" do
-	
-# 	it "all planes can land and all planes can take off" do
-# 		6.times {Plane.new} 
-# 		airport.land()
 
+
+describe "The grand finale" do
 	
-# end
+
+	let(:airport) { Airport.new }
+	let(:plane  ) { Plane.new   }
+
+
+	it "all planes can land and take off" do
+		allow(airport).to receive(:weather) {"Sunny"}
+		6.times {airport.land(plane)}
+		6.times {airport.take_off(plane)}
+		expect(airport.plane_count).to eq(0)
+	end
+
+	it "planes cannot land when stormy" do
+		allow(airport).to receive(:weather) {"Sunny"}
+		airport.land(plane)
+		expect(airport.plane_count).to eq(0)
+	end
+
+
+end
