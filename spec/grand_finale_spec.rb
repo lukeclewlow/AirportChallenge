@@ -18,11 +18,5 @@ describe "The grand finale" do
 		expect(airport.plane_count).to eq(0)
 	end
 
-	it "planes cannot land when stormy" do
-		allow(airport).to receive(:weather) {"Sunny"}
-		airport.land(plane)
-		expect(airport.plane_count).to eq(0)
-	end
-
 
 end
