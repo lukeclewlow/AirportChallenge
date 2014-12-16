@@ -1,4 +1,4 @@
-class FullRunwayError < Exception
+	class FullRunwayError < Exception
 	def message
 		'Airport is full'
 	end
@@ -14,7 +14,7 @@ end
 class Airport
 
 
-DEFAULT_CAPACITY = 10
+	DEFAULT_CAPACITY = 10
 
 
 	def initialize
@@ -24,16 +24,13 @@ DEFAULT_CAPACITY = 10
 	end
 
 	def land(plane)
-		stormy
 		raise FullRunwayError if full?
-		plane.land!
+		plane.land! if clear_for_landing
 		@runway << plane
-
 	end
 
 	def take_off(plane)
-		stormy
-		@runway.delete(plane)
+		@runway.delete(plane) if clear_for_takeoff
 		plane.fly!
 	end
 
@@ -46,17 +43,18 @@ DEFAULT_CAPACITY = 10
 	end
 
 	def full?
-		plane_count == capacity
+		plane_count >= capacity
 	end
 
 	def weather
-		weather = [ "Sunny", "Sunny", "Sunny", "Stormy", "Stormy" ]
-		selection = rand(5)
-		@weather = weather[selection]
+		(1..5).to_a.sample >= 2 ? "Stormy" : "Sunny"
 	end
 
-	def stormy
+	def clear_for_landing
 		raise TooStormy if weather == "Stormy"
+		true
 	end
+	
+	alias_method :clear_for_takeoff, :clear_for_landing
 
 end

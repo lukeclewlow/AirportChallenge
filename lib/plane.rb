@@ -8,10 +8,8 @@ class Plane
 		@flying
 	end
 
-	def fly!
-		if land!
-		end
-		@flying = true
+	def fly!	
+		@flying = true unless flying? 
 	end
 
 	def land!
