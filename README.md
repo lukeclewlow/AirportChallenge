@@ -20,3 +20,30 @@ I had spent my previous project using the Chicago Style, which although I enjoye
 
 I was very limited on time so there are a couple of things I would have improved on. I think given further time I would have split out my Airport into an AirTrafficControl class and a weather module to further encapsulate them. However, I am very pleased with the functionality of the program as it is when testing in IRB.
 
+##What is it? 
+A simple ruby program managing a very basic imaginary air traffic control system. 
+
+##Why?
+* Learning about TDD and using RSpec
+* Learning about Ruby classes
+* Helping me to learn the basic principles of object oriented design. 
+
+###To run tests:
+```
+rspec
+```
+
+Objectives
+-----
+* Improve basic ruby knowledge
+* Use classes
+* Use TDD to build up program
+* Use red, green, refactor rule to improve design and overall code
+
+##technologies
+* Ruby
+* RSpec
+
+##Contributors
+[Luke Clewlow](https://github.com/lukeclewlow)  
+
